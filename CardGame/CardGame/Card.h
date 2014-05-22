@@ -3,6 +3,6 @@
 // Cards structure
 struct card 
 {
-	char rank;
-	char suit;
+	char* rank;
+	char* suit;
 };

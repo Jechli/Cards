@@ -7,14 +7,14 @@
 
 class Deck
 {
-private:
 	struct card cards[DECK_SIZE];
-	Deck() {}
 
 public:
 	Deck(); // initialize deck
+	~Deck(); // destructor
 	void Shuffle(); // Shuffle deck randomly
-	struct card* retrieveHand(); // retrieve 5 cards from deck
+	struct card* GetHand(); // retrieve 5 cards from deck
 };
 
 #endif
+

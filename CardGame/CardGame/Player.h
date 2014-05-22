@@ -12,9 +12,11 @@ private:
 
 public:
 	Player(int p_id);
+	~Player();
 	void SetHand(struct card* new_hand);
 	int CalculatePoints();
 	struct card* GetHand() { return hand; }
 };
 
 #endif
+
