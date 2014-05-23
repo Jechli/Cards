@@ -1,14 +1,12 @@
 #include "Card.h"
 
-#ifndef PLAYER_H
-#define PLAYER_H
-#define MAX_HAND 5
+#pragma once
 
 class Player 
 {
 private:
 	int id;
-	struct card hand[MAX_HAND];
+	struct card hand[HAND_SIZE];
 
 public:
 	Player(int p_id);
@@ -18,5 +16,5 @@ public:
 	struct card* GetHand() { return hand; }
 };
 
-#endif
+
 

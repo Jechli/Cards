@@ -1,15 +1,13 @@
 #include "Card.h"
 #include "Player.h"
 
-#ifndef DECK_H
-#define DECK_H
-
+#pragma once
 #define DECK_SIZE 52
 
 class Deck
 {
 	int new_card_index;				// index of a new card in the deck
-	struct card cards[DECK_SIZE];
+	struct card* cards[DECK_SIZE];
 
 public:
 	Deck();							// constructor
@@ -18,5 +16,4 @@ public:
 	void DealHand(struct card* hand);		// Deal a new hand 
 };
 
-#endif
 

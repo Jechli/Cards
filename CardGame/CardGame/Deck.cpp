@@ -1,6 +1,7 @@
 #include "Deck.h"
 #include "Card.h"
 #include <stdlib.h>
+#include <time.h>
 
 // Initialize deck
 Deck::Deck()
@@ -20,16 +21,17 @@ Deck::Deck()
 		}
 
 		// fill up rank with 4 suits
-		cards[index].rank = rk;
-		cards[index].suit = "D";		// diamonds
-		cards[index+1].rank = rk;
-		cards[index+1].suit = "S";		// spades
-		cards[index+2].rank = rk;
-		cards[index+2].suit = "H";		// hearts
-		cards[index+3].rank = rk;
-		cards[index+3].suit = "C";		// clubs
+		cards[index]->rank = rk;
+		cards[index]->suit = "D";		// diamonds
+		cards[index+1]->rank = rk;
+		cards[index+1]->suit = "S";		// spades
+		cards[index+2]->rank = rk;
+		cards[index+2]->suit = "H";		// hearts
+		cards[index+3]->rank = rk;
+		cards[index+3]->suit = "C";		// clubs
 
 	}
+	free(rk);
 }
 
 
@@ -40,9 +42,19 @@ Deck::~Deck()
 
 
 // Shuffle the deck randomly
-// Implementation of Fisher-Yates algorithm
 void Deck::Shuffle()
 {
+	int i, cards_left, rand_num;
+	struct card temp_card;
+
+	for (i = 0, cards_left = DECK_SIZE-1; i < DECK_SIZE; i++, cards_left--) {
+		srand(time(NULL));
+		rand_num = rand() % cards_left;
+		temp_card = *(cards[i]);
+		*(cards[i]) = *(cards[rand_num]);
+		*(cards[rand_num]) = temp_card;
+	}
+
 }
 
 
@@ -51,8 +63,8 @@ void Deck::DealHand(struct card* hand)
 {
 	int i;
 
-	for (i = 0; i < 5; i++) {
-		*(hand+i) = cards[new_card_index];
+	for (i = 0; i < HAND_SIZE; i++) {
+		*(hand+i) = *(cards[new_card_index]);
 		new_card_index++;
 	}
 
