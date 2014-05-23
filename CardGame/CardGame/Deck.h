@@ -2,7 +2,6 @@
 #include "Player.h"
 
 #pragma once
-#define DECK_SIZE 52
 
 class Deck
 {
@@ -11,7 +10,8 @@ class Deck
 
 public:
 	Deck();							// constructor
-	~Deck();						// deconstructor
+	~Deck() {}						// deconstructor
+
 	void Shuffle();					// Shuffle deck randomly
 	void DealHand(struct card* hand);		// Deal a new hand 
 };

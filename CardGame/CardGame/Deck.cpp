@@ -3,13 +3,17 @@
 #include <stdlib.h>
 #include <time.h>
 
+#pragma warning( disable : 4244 ) 
+
+// fix: Should create an array with all ranks, array with all suits, and fill accordingly.
+
 // Initialize deck
 Deck::Deck()
 {
 	int i, index = 0;
 	char* rk; 
 	
-	for (i = 1; i < 14; i++, index+4) {
+	for (i = 1; i < 14; i++, index+4) { // for all ranks, create 4 suits
 
 		// get the rank
 		if (i == 1) { rk = "A"; }
@@ -31,13 +35,8 @@ Deck::Deck()
 		cards[index+3]->suit = "C";		// clubs
 
 	}
+
 	free(rk);
-}
-
-
-// Deconstructor
-Deck::~Deck()
-{
 }
 
 
@@ -55,6 +54,7 @@ void Deck::Shuffle()
 		*(cards[rand_num]) = temp_card;
 	}
 
+	return;
 }
 
 

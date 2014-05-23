@@ -1,11 +1,16 @@
 #include "Player.h"
 #include "Card.h"
 
-Player::Player(void)
+void Player::SetHand(struct card* new_hand)
 {
+	int i;
+	for (i = 0; i < HAND_SIZE; i++) {
+		hand[i] = *(new_hand+i);
+	}
+	return;
 }
 
-
-Player::~Player(void)
+int Player::CalculatePoints()
 {
+	return 0;
 }
