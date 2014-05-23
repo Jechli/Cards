@@ -2,12 +2,11 @@
 #include "Card.h"
 #include <stdlib.h>
 
-// initialize deck
+// Initialize deck
 Deck::Deck()
 {
 	int i, index = 0;
 	char* rk; 
-	char st;
 	
 	for (i = 1; i < 14; i++, index+4) {
 
@@ -17,7 +16,7 @@ Deck::Deck()
 		else if (i == 12) { rk = "Q"; }
 		else if (i == 13) { rk = "K"; }
 		else {
-			_itoa(i, rk, 10);
+			*rk = (char) i;
 		}
 
 		// fill up rank with 4 suits
@@ -34,16 +33,28 @@ Deck::Deck()
 }
 
 
+// Deconstructor
 Deck::~Deck()
 {
 }
 
 
+// Shuffle the deck randomly
+// Implementation of Fisher-Yates algorithm
 void Deck::Shuffle()
 {
 }
 
 
-struct card* Deck::GetHand()
+// Get a new hand from the deck
+void Deck::DealHand(struct card* hand)
 {
+	int i;
+
+	for (i = 0; i < 5; i++) {
+		*(hand+i) = cards[new_card_index];
+		new_card_index++;
+	}
+
+	return;
 }
