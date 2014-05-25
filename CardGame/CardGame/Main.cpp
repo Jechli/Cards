@@ -3,9 +3,12 @@
 #include <string.h>
 #include "Player.h"
 #include "Deck.h"
-#include "Card.h"
+#include "Cards.h"
+#include "Score.h"
 
 int main (void) 
 {
 	return 0;
 }
+
+// function for sorting the players

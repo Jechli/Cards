@@ -1,5 +1,5 @@
 #include "Deck.h"
-#include "Card.h"
+#include "Cards.h"
 #include <stdlib.h>
 #include <time.h>
 

@@ -1,5 +1,9 @@
 #include "Player.h"
-#include "Card.h"
+#include "Cards.h"
+
+void Player::SortHand() {
+
+}
 
 void Player::SetHand(struct card* new_hand)
 {
@@ -10,7 +14,3 @@ void Player::SetHand(struct card* new_hand)
 	return;
 }
 
-int Player::CalculatePoints()
-{
-	return 0;
-}
