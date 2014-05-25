@@ -12,6 +12,8 @@ Deck::Deck()
 {
 	int i, index = 0;
 	char* rk; 
+
+	new_card_index = 0;
 	
 	for (i = 1; i < 14; i++, index+4) { // for all ranks, create 4 suits
 

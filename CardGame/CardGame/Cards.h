@@ -5,6 +5,9 @@
 #define DECK_SIZE (RANKS*SUITS)
 #define PLAYERS 10
 #define MAX_PLAYERS (DECK_SIZE/HAND_SIZE)
+#define SUITS_SET {"S", "H", "C", "D"}
+#define RANKS_SET {"2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"}
+
 
 // Cards structure
 struct card 
@@ -15,4 +18,3 @@ struct card
 
 // operator overloads
 bool operator <(const struct card &left, const struct card &right);
-bool operator >(const struct card &left, const struct card &right);

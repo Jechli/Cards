@@ -68,6 +68,7 @@
     <ClInclude Include="Score.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Cards.cpp" />
     <ClCompile Include="Deck.cpp" />
     <ClCompile Include="Score.cpp" />
     <ClCompile Include="Main.cpp" />
