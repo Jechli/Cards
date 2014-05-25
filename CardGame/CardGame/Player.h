@@ -11,13 +11,14 @@ private:
 	struct card hand[HAND_SIZE];
 	int points;
 
-	void SortHand();
+	void SortHand();		
+	void Swap(int i, int j); // helper function for SortHand()
 
 public:
 
 	Player(int p_id) : id(p_id), hand(), points(0) {}
 	~Player() {}
-	void SetHand(struct card* new_hand);
+	void SetHand(struct card new_hand[HAND_SIZE]);
 	struct card* GetHand() { return hand; }
 	int GetPoints() { return points; }
 	int GetID() { return id; }
