@@ -1,6 +1,7 @@
 #include "Score.h"
 #include <stdlib.h>
 
+// helper functions
 bool Repeats(struct card hand[HAND_SIZE]);
 bool Triple(struct card hand[HAND_SIZE]) ;
 bool SameSuit(struct card hand[HAND_SIZE]);
@@ -116,10 +117,12 @@ int Pairs(struct card hand[HAND_SIZE])
 			if (hand[i].rank != current_rank) { 
 				current_rank = hand[i].rank;
 				values++;
+				count+=2;
 			}
-			if (count == 0) { count+=2; values++; }
+			else if (count == 0) { count+=2; values++; }
 			else { count++; }
 		}
+		if (count%2 == 1) { count = 0; }
 	}
 	free(current_rank);
 	return (count / values);
