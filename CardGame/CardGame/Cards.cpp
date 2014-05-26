@@ -12,3 +12,22 @@ bool operator <(const struct card &left, const struct card &right)
 	else if ((int) left.rank >= (int) right.rank) { return false; }
 	else { return true; }
 }
+
+int operator-(const struct card &card1, const struct card &card2)
+{
+	int arg1, arg2;
+
+	if (card1.rank == "A") { arg1 = 14; }
+	else if (card1.rank == "K") { arg1 = 13; }
+	else if (card1.rank == "Q") { arg1 = 12; }
+	else if (card1.rank == "J") { arg1 = 11; }
+	else { arg1 = (int) card1.rank; }
+	
+	if (card2.rank == "A") { arg2 = 14; }
+	else if (card2.rank == "K") { arg2 = 13; }
+	else if (card2.rank == "Q") { arg2 = 12; }
+	else if (card2.rank == "J") { arg2 = 11; }
+	else { arg2 = (int) card2.rank; }
+
+	return (arg1 - arg2);
+}

@@ -34,7 +34,7 @@ bool Triple(struct card hand[HAND_SIZE])
 {
 	int i, count = 0;
 
-	while (i < HAND_SIZE) {
+	for (i = 1; i < HAND_SIZE; i++) {
 		if (hand[i-1].rank == hand[i].rank) { 
 			count++;
 			i++;
@@ -64,7 +64,7 @@ bool SameSuit(struct card hand[HAND_SIZE])
 }
 
 
-// pairs? 1 = 1 pair, 2 = 2 pairs, 4 = 4 of kind
+// pairs? 1 = 1 pair, 2 = 2 pairs, 4 = 4 of kind, 0 = no pairs
 int Pairs(struct card hand[HAND_SIZE]) 
 {
 	int i, count = 0, values = 0;
@@ -85,6 +85,20 @@ int Pairs(struct card hand[HAND_SIZE])
 }
 
 
-// sequence?
+// is it a sequence?
+bool IsSequence(struct card hand[HAND_SIZE]) 
+{
+	int i;
+	for (i = 1; i < HAND_SIZE; i++) {
+		if ((hand[i] - hand[i-1]) != 1) { return false; }
+	}
+	return true;
+}
 
-// royal?
+
+// royal? This assume sequence and suits are all checked. 
+bool IsRoyal(struct card &first_card) 
+{
+	if (first_card.rank == "10") { return true; }
+	else { return false; }
+}
