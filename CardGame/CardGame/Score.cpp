@@ -1,9 +1,51 @@
 #include "Score.h"
 #include <stdlib.h>
 
+bool Repeats(struct card hand[HAND_SIZE]);
+bool Triple(struct card hand[HAND_SIZE]) ;
+bool SameSuit(struct card hand[HAND_SIZE]);
+int Pairs(struct card hand[HAND_SIZE]);
+bool IsSequence(struct card hand[HAND_SIZE]);
+bool IsRoyal(struct card &first_card);
+
 // Scoring system
 int CalculatePoints(struct card hand[HAND_SIZE]) {
 	
+	if (Repeats(hand))					// hands with rank repeats
+	{
+		if (Triple(hand)) 
+		{
+			if (Pairs(hand) == 1) { return 6; }	// full house
+			else { return 3; }					// 3 of kind
+		}
+
+		else 
+		{
+			int pairs = Pairs(hand);
+			if (pairs == 1) { return 1; }			// one pair
+			else if (pairs == 2) { return 2; }		// two pairs
+			else if (pairs == 4) { return 7; }		// 4 of a kind
+		}
+	}
+
+	else								// hands with no rank repeats
+	{
+		if (SameSuit(hand)) 
+		{
+			if (IsSequence(hand)) 
+			{
+				if (IsRoyal(hand[0])) { return 9; }	// royal
+				else { return 8; }					// straight flush
+			}
+			else { return 5; }						// flush
+		}
+		else 
+		{
+			if (IsSequence(hand)) { return 4; }		// straight
+			else { return 0; }						// high
+		}
+	} 
+
 	return 0;
 }
 
@@ -64,7 +106,7 @@ bool SameSuit(struct card hand[HAND_SIZE])
 }
 
 
-// pairs? 1 = 1 pair, 2 = 2 pairs, 4 = 4 of kind, 0 = no pairs
+// pairs? 1 = 1 pair, 2 = 2 pairs, 4 = 4 of kind, 0 = no pairs // need to fix this.... =.="
 int Pairs(struct card hand[HAND_SIZE]) 
 {
 	int i, count = 0, values = 0;
