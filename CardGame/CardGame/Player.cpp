@@ -21,7 +21,7 @@ void Player::SortHand()
 	}
 }
 
-// Helper function
+// Private helper function
 
 void Player::Swap(int i, int j)
 {

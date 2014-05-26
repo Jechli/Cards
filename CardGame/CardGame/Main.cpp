@@ -10,5 +10,3 @@ int main (void)
 {
 	return 0;
 }
-
-// function for sorting the players

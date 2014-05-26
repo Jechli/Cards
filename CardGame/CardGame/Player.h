@@ -10,6 +10,7 @@ private:
 	int id;
 	struct card hand[HAND_SIZE];
 	int points;
+	//char* highest_rank; // just added
 
 	void SortHand();		
 	void Swap(int i, int j); // helper function for SortHand()
@@ -22,6 +23,7 @@ public:
 	struct card* GetHand() { return hand; }
 	int GetPoints() { return points; }
 	int GetID() { return id; }
+	//void SetHighestRank(char* rank); // implement
 };
 
 

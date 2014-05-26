@@ -18,3 +18,5 @@ struct card
 
 // operator overloads
 bool operator <(const struct card &left, const struct card &right);
+
+// overload for ==?
