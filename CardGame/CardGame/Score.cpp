@@ -65,7 +65,8 @@ bool CompareHands(struct card hand1[HAND_SIZE], struct card hand2[HAND_SIZE], in
 {
 	InsertionSort(hand1);
 	InsertionSort(hand2);
-	if (points == 1 || points == 2) {                                    // one pair, two pairs
+	if (points == 1 || points == 2) { 
+		// one pair, two pairs
 		return hand2[HighestCard(hand2)] < hand1[HighestCard(hand1)];
 	}
 	else if (points == 3 || points == 6 || points == 7) {                // 3 of kind, full house, 4 of kind
@@ -78,8 +79,24 @@ bool CompareHands(struct card hand1[HAND_SIZE], struct card hand2[HAND_SIZE], in
 
 
 // sort players
-void SortPlayers(Player players[PLAYERS]);
-
+void SortPlayers(Player player[PLAYERS])  // insertion sort
+{
+	int i, j, points;
+	Player temp;
+	for (i = 1; i < HAND_SIZE; i++)		// insertion sort
+	{
+		points = player[i].GetPoints();
+		temp = player[i];
+		for (j = i - 1; j >=0 && points <= player[j].GetPoints(); j--)
+		{
+			if (points == player[j].GetPoints()) {
+				if (CompareHands(player[j].GetHand(), temp.GetHand(), points)) { player[j+1] = player[j]; }
+			}
+			else { player[j+1] = player[j]; }
+		}
+		player[j+1] = temp;
+	}
+}
 
 // ---------------------------HELPER FUNCTIONS------------------------------//
 
@@ -181,8 +198,9 @@ bool IsRoyal(struct card &first_card)
 // find highest card for one or two pairs
 int HighestCard(struct card hand[HAND_SIZE]) 
 {
+	InsertionSort(hand);
 	int i;
-	for (i = HAND_SIZE; i > 0; i--) {
+	for (i = HAND_SIZE-1; i > 0; i--) {
 		if (hand[i].rank == hand[i-1].rank) { return i; }
 	}
 	return 0; // should not reach this

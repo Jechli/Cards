@@ -10,4 +10,4 @@ int CalculatePoints(struct card hand[HAND_SIZE]);
 bool CompareHands(struct card hand1[HAND_SIZE], struct card hand2[HAND_SIZE], int points);
 
 // sort players: not implemented yet
-void SortPlayers(Player players[PLAYERS]);
+void SortPlayers(Player player[PLAYERS]);
