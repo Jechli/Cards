@@ -13,6 +13,7 @@ void Player::SortHand()
 			if (hand[i] < hand[j]) 
 			{ 
 				Swap(i, j); 
+				break;
 			}
 			j++;
 		}

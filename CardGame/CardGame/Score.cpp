@@ -11,7 +11,7 @@ bool IsRoyal(struct card &first_card);
 int HighestCard(struct card hand[HAND_SIZE]);
 
 // Scoring system
-int CalculatePoints(struct card* hand) {
+int CalculatePoints(struct card hand[HAND_SIZE]) {
 	
 	if (Repeats(hand))					// hands with rank repeats
 	{
@@ -87,25 +87,27 @@ bool Repeats(struct card hand[HAND_SIZE])
 
 
 // Returns 0 if not triple, otherwise the char of the highest rank of the triple
+// can compare middle with side cards
 bool Triple(struct card hand[HAND_SIZE]) 
 {
-	int i, count = 0;
-
-	for (i = 1; i < HAND_SIZE; i++) {
-		if (hand[i-1].rank == hand[i].rank) { 
-			count++;
-			i++;
-		}
-		else if ((hand[i-1].rank != hand[i].rank) && count == 3) {
+	char* middle_rank = hand[2].rank; // middle card
+	// left
+	if (middle_rank == hand[1].rank) {
+		if (middle_rank == hand[3].rank && (middle_rank != hand[4].rank || middle_rank != hand[0].rank)) { 
 			return true;
 		}
-		else {
-			count = 0;
-			i++;
-		}
+		else if (middle_rank == hand[0].rank && middle_rank != hand[3].rank) { return true; }
+		else { return false; }
 	}
-
-	if (count == 3) { return true; }
+	// right
+	else if (middle_rank == hand[3].rank) {
+		if (middle_rank == hand[1].rank && (middle_rank != hand[4].rank || middle_rank != hand[0].rank)) { 
+			return true;
+		}
+		else if (middle_rank == hand[4].rank && middle_rank != hand[1].rank) { return true; }
+		else { return false; }
+	}
+	// neither
 	else { return false; }
 }
 
@@ -136,9 +138,10 @@ int Pairs(struct card hand[HAND_SIZE])
 			else if (count == 0) { count+=2; values++; }
 			else { count++; }
 		}
-		if (count%2 == 1) { count = 0; }
+		else if (count%2 == 1) { count = 0; values--;}
+		else {}
 	}
-	free(current_rank);
+	if (values < 1) { values = 1; }
 	return (count / values);
 
 }
