@@ -6,38 +6,21 @@
 
 // fix: Should create an array with all ranks, array with all suits, and fill accordingly.
 
-// Initialize deck
+// Initialize deck 
 Deck::Deck()
 {
-	int i, index = 0;
-	char* rk; 
-
+	int i, j, index = 0; 
 	new_card_index = 0;
+	char* SUITS_SET[SUITS] = {"S", "H", "C", "D"};
+	char* RANKS_SET[RANKS] = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"};
 	
-	for (i = 1; i < 14; i++, index+4) { // for all ranks, create 4 suits
-
-		// get the rank
-		if (i == 1) { rk = "A"; }
-		else if (i == 11) { rk = "J"; }
-		else if (i == 12) { rk = "Q"; }
-		else if (i == 13) { rk = "K"; }
-		else {
-			*rk = (char) i;
+	for (i = 0; i < RANKS; i++) {			// for all ranks
+		for (j = 0; j < SUITS; j++) {       // for all suits
+			cards[index].rank = RANKS_SET[i];
+			cards[index].suit = SUITS_SET[j];
+			index++;
 		}
-
-		// fill up rank with 4 suits
-		cards[index]->rank = rk;
-		cards[index]->suit = "D";		// diamonds
-		cards[index+1]->rank = rk;
-		cards[index+1]->suit = "S";		// spades
-		cards[index+2]->rank = rk;
-		cards[index+2]->suit = "H";		// hearts
-		cards[index+3]->rank = rk;
-		cards[index+3]->suit = "C";		// clubs
-
 	}
-
-	free(rk);
 }
 
 
@@ -47,12 +30,12 @@ void Deck::Shuffle()
 	int i, cards_left, rand_num;
 	struct card temp_card;
 
-	for (i = 0, cards_left = DECK_SIZE-1; i < DECK_SIZE; i++, cards_left--) {
+	for (i = 0, cards_left = DECK_SIZE; i < DECK_SIZE; i++, cards_left--) {
 		srand(time(NULL));
 		rand_num = rand() % cards_left;
-		temp_card = *(cards[i]);
-		*(cards[i]) = *(cards[rand_num]);
-		*(cards[rand_num]) = temp_card;
+		temp_card = cards[i];
+		cards[i] = cards[rand_num];
+		cards[rand_num] = temp_card;
 	}
 
 	return;
@@ -65,7 +48,7 @@ void Deck::DealHand(struct card* hand)
 	int i;
 
 	for (i = 0; i < HAND_SIZE; i++) {
-		*(hand+i) = *(cards[new_card_index]);
+		*(hand+i) = cards[new_card_index];
 		new_card_index++;
 	}
 

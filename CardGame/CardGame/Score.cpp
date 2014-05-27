@@ -55,14 +55,15 @@ int CalculatePoints(struct card hand[HAND_SIZE]) {
 // Compare hands: T if hand1 > hand2, else F
 bool CompareHands(struct card hand1[HAND_SIZE], struct card hand2[HAND_SIZE], int points)
 {
-	if (points == 8 || points == 5 || points == 4 || points == 0) { // straight flush, straight, flush, high card
-		return (hand2[HAND_SIZE-1] < hand1[HAND_SIZE-1]);
-	}
-	else if (points == 1 || points == 2) {
+	if (points == 1 || points == 2) {                                    // one pair, two pairs
 		return hand2[HighestCard(hand2)] < hand1[HighestCard(hand1)];
 	}
-	else if (points == 3) {
-		if 
+	else if (points == 3 || points == 6 || points == 7) {                // 3 of kind, full house, 4 of kind
+		return hand2[2] < hand1[2];					                     // middle card has to be part of the triple or quadruple
+	}	
+	else {                                                               // straight flush, straight, flush, high card, royal
+		return (hand2[HAND_SIZE-1] < hand1[HAND_SIZE-1]);
+	}
 }
 
 

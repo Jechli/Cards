@@ -6,7 +6,7 @@
 class Deck
 {
 	int new_card_index;				// index of a new card in the deck
-	struct card* cards[DECK_SIZE];
+	struct card cards[DECK_SIZE];
 
 public:
 	Deck();							// constructor
