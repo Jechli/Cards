@@ -1,5 +1,5 @@
 #include "Player.h"
-
+#include "Cards.h"
 // Private functions 
 
 void Player::SortHand() 
@@ -13,7 +13,6 @@ void Player::SortHand()
 			if (hand[i] < hand[j]) 
 			{ 
 				Swap(i, j); 
-				break;
 			}
 			j++;
 		}
@@ -39,6 +38,7 @@ void Player::SetHand(struct card new_hand[HAND_SIZE])
 	for (i = 0; i < HAND_SIZE; i++) {
 		hand[i] = new_hand[i];
 	}
+	SortHand();
 	return;
 }
 

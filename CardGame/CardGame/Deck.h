@@ -13,7 +13,7 @@ public:
 	~Deck() {}						// deconstructor
 
 	void Shuffle();					// Shuffle deck randomly
-	void DealHand(struct card* hand);		// Deal a new hand 
+	struct card DealCard();		// Deal a new hand 
 };
 
 

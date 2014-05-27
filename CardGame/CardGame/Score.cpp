@@ -11,7 +11,7 @@ bool IsRoyal(struct card &first_card);
 int HighestCard(struct card hand[HAND_SIZE]);
 
 // Scoring system
-int CalculatePoints(struct card hand[HAND_SIZE]) {
+int CalculatePoints(struct card* hand) {
 	
 	if (Repeats(hand))					// hands with rank repeats
 	{

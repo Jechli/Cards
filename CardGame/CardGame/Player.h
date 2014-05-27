@@ -21,9 +21,9 @@ public:
 	Player(int p_id) : id(p_id), hand(), points(0) {}
 	~Player() {}
 	void SetHand(struct card new_hand[HAND_SIZE]);
-	struct card* GetHand() { return hand; }
+	struct card* GetHand() { return hand; }  
 	int GetPoints() { return points; }
-	int GetID() { return id; }
+	int GetID() { return id; }		
 };
 
 

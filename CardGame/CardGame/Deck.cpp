@@ -43,14 +43,9 @@ void Deck::Shuffle()
 
 
 // Get a new hand from the deck
-void Deck::DealHand(struct card* hand)
+struct card Deck::DealCard()
 {
-	int i;
-
-	for (i = 0; i < HAND_SIZE; i++) {
-		*(hand+i) = cards[new_card_index];
-		new_card_index++;
-	}
-
-	return;
+	struct card temp = cards[new_card_index];
+	new_card_index++;
+	return temp;
 }
