@@ -83,7 +83,7 @@ void SortPlayers(Player player[PLAYERS])  // insertion sort
 {
 	int i, j, points;
 	Player temp;
-	for (i = 1; i < HAND_SIZE; i++)		// insertion sort
+	for (i = 1; i < PLAYERS; i++)		// insertion sort
 	{
 		points = player[i].GetPoints();
 		temp = player[i];
@@ -91,6 +91,7 @@ void SortPlayers(Player player[PLAYERS])  // insertion sort
 		{
 			if (points == player[j].GetPoints()) {
 				if (CompareHands(player[j].GetHand(), temp.GetHand(), points)) { player[j+1] = player[j]; }
+				else { break; }
 			}
 			else { player[j+1] = player[j]; }
 		}
