@@ -22,6 +22,7 @@ int main (void)
 		}
 		poker_players[i].SetHand(new_hand);	// OKAY, sortHand OKAY!!
 		points = CalculatePoints(new_hand);
+		poker_players[i].SetPoints(points);
 	}
 
 	// TODO just need to sort players!!!

@@ -93,7 +93,7 @@ bool Triple(struct card hand[HAND_SIZE])
 	char* middle_rank = hand[2].rank; // middle card
 	// left
 	if (middle_rank == hand[1].rank) {
-		if (middle_rank == hand[3].rank && (middle_rank != hand[4].rank || middle_rank != hand[0].rank)) { 
+		if (middle_rank == hand[3].rank && (middle_rank != hand[4].rank && middle_rank != hand[0].rank)) { 
 			return true;
 		}
 		else if (middle_rank == hand[0].rank && middle_rank != hand[3].rank) { return true; }
@@ -101,7 +101,7 @@ bool Triple(struct card hand[HAND_SIZE])
 	}
 	// right
 	else if (middle_rank == hand[3].rank) {
-		if (middle_rank == hand[1].rank && (middle_rank != hand[4].rank || middle_rank != hand[0].rank)) { 
+		if (middle_rank == hand[1].rank && (middle_rank != hand[4].rank && middle_rank != hand[0].rank)) { 
 			return true;
 		}
 		else if (middle_rank == hand[4].rank && middle_rank != hand[1].rank) { return true; }
@@ -138,8 +138,9 @@ int Pairs(struct card hand[HAND_SIZE])
 			else if (count == 0) { count+=2; values++; }
 			else { count++; }
 		}
-		else if (count%2 == 1) { count = 0; values--;}
-		else {}
+		else {
+			if (count%2 == 1) { count = 0; values--;}
+		}
 	}
 	if (values < 1) { values = 1; }
 	return (count / values);

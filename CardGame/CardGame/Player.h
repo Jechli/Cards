@@ -12,7 +12,6 @@ private:
 	int points;
 
 	void SortHand();		
-	void Swap(int i, int j); // helper function for SortHand()
 	
 
 public:
@@ -24,6 +23,7 @@ public:
 	struct card* GetHand() { return hand; }  
 	int GetPoints() { return points; }
 	int GetID() { return id; }		
+	void SetPoints(int i) { points = i; }
 };
 
 

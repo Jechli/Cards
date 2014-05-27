@@ -4,32 +4,20 @@
 
 void Player::SortHand() 
 {
-	int i, j = 0;
+	int i, j;
+	struct card temp;
 	
 	for (i = 1; i < HAND_SIZE; i++)		// insertion sort
 	{
-		while (j < i) 
+		temp = hand[i];
+		for (j = i - 1; j >=0 && temp < hand[j]; j--)
 		{
-			if (hand[i] < hand[j]) 
-			{ 
-				Swap(i, j); 
-				break;
-			}
-			j++;
+			hand[j+1] = hand[j];
 		}
-		j = 0;
+		hand[j+1] = temp;
 	}
 }
 
-// Private helper function
-
-void Player::Swap(int i, int j)
-{
-	struct card temp = hand[i];
-	hand[i] = hand[j];
-	hand[j] = temp;
-	return;
-}
 
 // Public Functions
 
