@@ -8,6 +8,7 @@ bool SameSuit(struct card hand[HAND_SIZE]);
 int Pairs(struct card hand[HAND_SIZE]);
 bool IsSequence(struct card hand[HAND_SIZE]);
 bool IsRoyal(struct card &first_card);
+int HighestCard(struct card hand[HAND_SIZE]);
 
 // Scoring system
 int CalculatePoints(struct card hand[HAND_SIZE]) {
@@ -50,8 +51,20 @@ int CalculatePoints(struct card hand[HAND_SIZE]) {
 	return 0;
 }
 
+
 // Compare hands: T if hand1 > hand2, else F
-bool CompareHands(struct card hand1[HAND_SIZE], struct card hand2[HAND_SIZE]);
+bool CompareHands(struct card hand1[HAND_SIZE], struct card hand2[HAND_SIZE], int points)
+{
+	if (points == 8 || points == 5 || points == 4 || points == 0) { // straight flush, straight, flush, high card
+		return (hand2[HAND_SIZE-1] < hand1[HAND_SIZE-1]);
+	}
+	else if (points == 1 || points == 2) {
+		return hand2[HighestCard(hand2)] < hand1[HighestCard(hand1)];
+	}
+	else if (points == 3) {
+		if 
+}
+
 
 // sort players
 void SortPlayers(Player players[PLAYERS]);
@@ -146,4 +159,15 @@ bool IsRoyal(struct card &first_card)
 {
 	if (first_card.rank == "10") { return true; }
 	else { return false; }
+}
+
+
+// find highest card for one or two pairs
+int HighestCard(struct card hand[HAND_SIZE]) 
+{
+	int i;
+	for (i = HAND_SIZE; i > 0; i--) {
+		if (hand[i].rank == hand[i-1].rank) { return i; }
+	}
+	return -1; // should not reach this
 }
