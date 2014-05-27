@@ -11,7 +11,7 @@ private:
 	struct card hand[HAND_SIZE];
 	int points;
 
-	void SortHand();		
+	//void SortHand();		
 	
 
 public:

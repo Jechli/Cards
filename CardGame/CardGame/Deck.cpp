@@ -47,5 +47,6 @@ struct card Deck::DealCard()
 {
 	struct card temp = cards[new_card_index];
 	new_card_index++;
+	if (new_card_index >= HAND_SIZE*PLAYERS) { new_card_index = 0; }
 	return temp;
 }

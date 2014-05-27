@@ -25,6 +25,8 @@ int main (void)
 		poker_players[i].SetPoints(points);
 	}
 
+
+
 	// TODO just need to sort players!!!
 
 	cout << poker_players[7].GetID() << endl; // this is how you print....

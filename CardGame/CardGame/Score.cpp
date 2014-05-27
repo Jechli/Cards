@@ -9,9 +9,17 @@ int Pairs(struct card hand[HAND_SIZE]);
 bool IsSequence(struct card hand[HAND_SIZE]);
 bool IsRoyal(struct card &first_card);
 int HighestCard(struct card hand[HAND_SIZE]);
+void InsertionSort(struct card hand[HAND_SIZE]);
 
 // Scoring system
 int CalculatePoints(struct card hand[HAND_SIZE]) {
+
+	InsertionSort(hand);
+	struct card first = hand[0];
+	struct card second = hand[1];
+	struct card third = hand[2];
+	struct card fourth = hand[3];
+	struct card fifth = hand[4];
 	
 	if (Repeats(hand))					// hands with rank repeats
 	{
@@ -55,6 +63,8 @@ int CalculatePoints(struct card hand[HAND_SIZE]) {
 // Compare hands: T if hand1 > hand2, else F
 bool CompareHands(struct card hand1[HAND_SIZE], struct card hand2[HAND_SIZE], int points)
 {
+	InsertionSort(hand1);
+	InsertionSort(hand2);
 	if (points == 1 || points == 2) {                                    // one pair, two pairs
 		return hand2[HighestCard(hand2)] < hand1[HighestCard(hand1)];
 	}
@@ -139,11 +149,12 @@ int Pairs(struct card hand[HAND_SIZE])
 			else { count++; }
 		}
 		else {
-			if (count%2 == 1) { count = 0; values--;}
+			if (count == 3) { count = 0; values--;}
 		}
 	}
 	if (values < 1) { values = 1; }
-	return (count / values);
+	if (count == 2) { return 1; }
+	else { return (count / values); }
 
 }
 
@@ -174,5 +185,22 @@ int HighestCard(struct card hand[HAND_SIZE])
 	for (i = HAND_SIZE; i > 0; i--) {
 		if (hand[i].rank == hand[i-1].rank) { return i; }
 	}
-	return -1; // should not reach this
+	return 0; // should not reach this
+}
+
+// insertion sort
+void InsertionSort(struct card hand[HAND_SIZE])
+{
+	int i, j;
+	struct card temp;
+	
+	for (i = 1; i < HAND_SIZE; i++)		// insertion sort
+	{
+		temp = hand[i];
+		for (j = i - 1; j >=0 && temp < hand[j]; j--)
+		{
+			hand[j+1] = hand[j];
+		}
+		hand[j+1] = temp;
+	}
 }
