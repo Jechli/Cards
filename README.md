@@ -13,4 +13,6 @@ I am not an expertise in any particular field of game programming, but I have a 
 in basic data structure and algorithm concepts.
 
 
-2. Coding test: It is a Visual Studio 2012 project called 'CardGame'.
+2. 
+
+Coding test: It is a Visual Studio 2012 project called 'CardGame'.
