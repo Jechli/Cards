@@ -1,17 +1,21 @@
 #include "Score.h"
 #include <stdlib.h>
 
-// helper functions
-bool Repeats(struct card hand[HAND_SIZE]);
-bool Triple(struct card hand[HAND_SIZE]) ;
-bool SameSuit(struct card hand[HAND_SIZE]);
-int Pairs(struct card hand[HAND_SIZE]);
-bool IsSequence(struct card hand[HAND_SIZE]);
-bool IsRoyal(struct card &first_card);
-int HighestCard(struct card hand[HAND_SIZE]);
-void InsertionSort(struct card hand[HAND_SIZE]);
+// Private helper functions 
+bool Repeats(struct card hand[HAND_SIZE]);			
+bool Triple(struct card hand[HAND_SIZE]) ;			
+bool SameSuit(struct card hand[HAND_SIZE]);			
+int Pairs(struct card hand[HAND_SIZE]);								
+bool IsSequence(struct card hand[HAND_SIZE]);		
+bool IsRoyal(struct card &first_card);				
+int HighestCard(struct card hand[HAND_SIZE]);		
+void InsertionSort(struct card hand[HAND_SIZE]);	
 
-// Scoring system
+
+// -----------------------PUBLIC FUNCTIONS------------------------------//
+
+
+// Scoring system: calculates points for a given hand
 int CalculatePoints(struct card hand[HAND_SIZE]) {
 
 	InsertionSort(hand);
@@ -21,38 +25,38 @@ int CalculatePoints(struct card hand[HAND_SIZE]) {
 	struct card fourth = hand[3];
 	struct card fifth = hand[4];
 	
-	if (Repeats(hand))					// hands with rank repeats
+	if (Repeats(hand))									// Check hand for cards with repeated ranks
 	{
-		if (Triple(hand)) 
+		if (Triple(hand))								// Check if it contains 3 of a kind
 		{
-			if (Pairs(hand) == 1) { return 6; }	// full house
-			else { return 3; }					// 3 of kind
+			if (Pairs(hand) == 1) { return 6; }			// FULL HOUSE
+			else { return 3; }							// 3 OF A KIND
 		}
 
 		else 
 		{
-			int pairs = Pairs(hand);
-			if (pairs == 1) { return 1; }			// one pair
-			else if (pairs == 2) { return 2; }		// two pairs
-			else if (pairs == 4) { return 7; }		// 4 of a kind
+			int pairs = Pairs(hand);					// Check for pairs
+			if (pairs == 1) { return 1; }				// ONE PAIR
+			else if (pairs == 2) { return 2; }			// TWO PAIRS
+			else if (pairs == 4) { return 7; }			// 4 OF A KIND
 		}
 	}
 
-	else								// hands with no rank repeats
+	else												// Hands without repeated ranks
 	{
-		if (SameSuit(hand)) 
+		if (SameSuit(hand))								// Check if all cards have the same suit
 		{
-			if (IsSequence(hand)) 
+			if (IsSequence(hand))						// Check if hand is a straight
 			{
-				if (IsRoyal(hand[0])) { return 9; }	// royal
-				else { return 8; }					// straight flush
+				if (IsRoyal(hand[0])) { return 9; }		// ROYAL FLUSH
+				else { return 8; }						// STRAIGHT FLUSH
 			}
-			else { return 5; }						// flush
+			else { return 5; }							// FLUSH
 		}
 		else 
 		{
-			if (IsSequence(hand)) { return 4; }		// straight
-			else { return 0; }						// high
+			if (IsSequence(hand)) { return 4; }			// STRAIGHT
+			else { return 0; }							// HIGH CARD
 		}
 	} 
 
@@ -99,10 +103,11 @@ void SortPlayers(Player player[PLAYERS])  // insertion sort
 	}
 }
 
-// ---------------------------HELPER FUNCTIONS------------------------------//
+
+// -----------------------PRIVATE HELPER FUNCTIONS------------------------------//
 
 
-// True if hand has more than 1 card of the same rank
+// Returns true if hand holds multiple cards of a rank
 bool Repeats(struct card hand[HAND_SIZE]) 
 {
 	int i = 1;
@@ -114,8 +119,7 @@ bool Repeats(struct card hand[HAND_SIZE])
 }
 
 
-// Returns 0 if not triple, otherwise the char of the highest rank of the triple
-// can compare middle with side cards
+// Returns true if hand holds 3 cards of a rank
 bool Triple(struct card hand[HAND_SIZE]) 
 {
 	char* middle_rank = hand[2].rank; // middle card
@@ -140,7 +144,7 @@ bool Triple(struct card hand[HAND_SIZE])
 }
 
 
-// same suit?
+// Returns true if all cards in hand have the same suit
 bool SameSuit(struct card hand[HAND_SIZE]) 
 {
 	int i;
@@ -151,7 +155,9 @@ bool SameSuit(struct card hand[HAND_SIZE])
 }
 
 
-// pairs? 1 = 1 pair, 2 = 2 pairs, 4 = 4 of kind, 0 = no pairs // need to fix this.... =.="
+// If hand contains one pair: return 1
+//					two pairs: return 2
+//					four of a kind: return 4
 int Pairs(struct card hand[HAND_SIZE]) 
 {
 	int i, count = 0, values = 0;
@@ -177,7 +183,7 @@ int Pairs(struct card hand[HAND_SIZE])
 }
 
 
-// is it a sequence?
+// Returns true if hand contains a straight
 bool IsSequence(struct card hand[HAND_SIZE]) 
 {
 	int i;
@@ -188,7 +194,8 @@ bool IsSequence(struct card hand[HAND_SIZE])
 }
 
 
-// royal? This assume sequence and suits are all checked. 
+// Returns true if hand is a royal flush. 
+// This assumes that a straight and flush is true for the hand. 
 bool IsRoyal(struct card &first_card) 
 {
 	if (first_card.rank == "10") { return true; }
@@ -196,7 +203,7 @@ bool IsRoyal(struct card &first_card)
 }
 
 
-// find highest card for one or two pairs
+// Returns the index in the hand of the highest card ranking for pairs.
 int HighestCard(struct card hand[HAND_SIZE]) 
 {
 	InsertionSort(hand);
@@ -207,13 +214,14 @@ int HighestCard(struct card hand[HAND_SIZE])
 	return 0; // should not reach this
 }
 
-// insertion sort
+
+// Sorts the cards of a hand in order from smallest to largest ranking using insertion sort
 void InsertionSort(struct card hand[HAND_SIZE])
 {
 	int i, j;
 	struct card temp;
 	
-	for (i = 1; i < HAND_SIZE; i++)		// insertion sort
+	for (i = 1; i < HAND_SIZE; i++)		
 	{
 		temp = hand[i];
 		for (j = i - 1; j >=0 && temp < hand[j]; j--)

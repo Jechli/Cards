@@ -18,4 +18,3 @@ struct card
 // operator overloads
 bool operator <(const struct card &left, const struct card &right);
 int operator-(const struct card &card1, const struct card &card2); // find difference between card ranks
-// overload for ==?

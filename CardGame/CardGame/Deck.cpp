@@ -4,8 +4,6 @@
 
 #pragma warning( disable : 4244 ) 
 
-// fix: Should create an array with all ranks, array with all suits, and fill accordingly.
-
 // Initialize deck 
 Deck::Deck()
 {
@@ -14,8 +12,8 @@ Deck::Deck()
 	char* SUITS_SET[SUITS] = {"S", "H", "C", "D"};
 	char* RANKS_SET[RANKS] = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"};
 	
-	for (i = 0; i < RANKS; i++) {			// for all ranks
-		for (j = 0; j < SUITS; j++) {       // for all suits
+	for (i = 0; i < RANKS; i++) {					// for all ranks
+		for (j = 0; j < SUITS; j++) {				// for all suits
 			cards[index].rank = RANKS_SET[i];
 			cards[index].suit = SUITS_SET[j];
 			index++;
@@ -24,7 +22,7 @@ Deck::Deck()
 }
 
 
-// Shuffle the deck randomly
+// Shuffle the deck randomly; Fisher Yates Shuffle algorithm
 void Deck::Shuffle()
 {
 	int i, cards_left, rand_num;
@@ -42,7 +40,7 @@ void Deck::Shuffle()
 }
 
 
-// Get a new hand from the deck
+// Get a new card from the deck
 struct card Deck::DealCard()
 {
 	struct card temp = cards[new_card_index];

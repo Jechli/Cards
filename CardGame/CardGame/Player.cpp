@@ -1,7 +1,7 @@
 #include "Player.h"
 #include "Cards.h"
 
-// Private functions 
+// PRIVATE 
 
 void Player::SortHand() 
 {
@@ -20,8 +20,7 @@ void Player::SortHand()
 }
 
 
-
-// Public Functions
+// PUBLIC
 
 void Player::SetHand(struct card new_hand[HAND_SIZE])
 {
