@@ -1,6 +1,6 @@
 Jennifer Ling
 
-1. 
+ONE: Skills and expertise 
 
 C++ is my main language, I was fond of it while taking my data structures course, and it is the 
 language I am using now in my robotics team, SnowBots.
@@ -13,6 +13,6 @@ I am not an expertise in any particular field of game programming, but I have a 
 in basic data structure and algorithm concepts.
 
 
-2. 
+TWO: Coding test
 
-Coding test: It is a Visual Studio 2012 project called 'CardGame'.
+It is a Visual Studio 2012 project called 'CardGame'.
