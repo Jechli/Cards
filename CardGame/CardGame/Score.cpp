@@ -183,6 +183,7 @@ int Pairs(struct card hand[HAND_SIZE])
 // Returns true if hand contains a straight
 bool IsSequence(struct card hand[HAND_SIZE]) 
 {
+	InsertionSort(hand);
 	int i;
 	for (i = 1; i < HAND_SIZE; i++) {
 		if ((hand[i] - hand[i-1]) != 1) { return false; }

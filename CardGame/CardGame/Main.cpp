@@ -36,6 +36,9 @@ int main (void)
 	cout << "AFTER SORTING PLAYERS: \n" << endl;
 	PrintPlayers(poker_players);
 
+	char* a = "2";
+	cout << (int) a << endl;
+
 	system( "pause" );
 	return 0;
 }
