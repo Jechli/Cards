@@ -9,11 +9,11 @@ class Deck
 	struct card cards[DECK_SIZE];
 
 public:
-	Deck();							// constructor
-	~Deck() {}						// deconstructor
+	Deck();						
+	~Deck() {}						
 
 	void Shuffle();					// Shuffle deck randomly
-	struct card DealCard();		// Deal a new hand 
+	struct card DealCard();			// Deal a new card
 };
 
 

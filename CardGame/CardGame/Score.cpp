@@ -15,7 +15,7 @@ void InsertionSort(struct card hand[HAND_SIZE]);
 // -----------------------PUBLIC FUNCTIONS------------------------------//
 
 
-// Scoring system: calculates points for a given hand
+// Scoring system: calculates points for a given hand's value
 int CalculatePoints(struct card hand[HAND_SIZE]) {
 
 	InsertionSort(hand);
@@ -64,30 +64,30 @@ int CalculatePoints(struct card hand[HAND_SIZE]) {
 }
 
 
-// Compare hands: T if hand1 > hand2, else F
+// Compare hands if their values are the same.
+// Returns true if hand1 > hand2
 bool CompareHands(struct card hand1[HAND_SIZE], struct card hand2[HAND_SIZE], int points)
 {
 	InsertionSort(hand1);
 	InsertionSort(hand2);
-	if (points == 1 || points == 2) { 
-		// one pair, two pairs
+	if (points == 1 || points == 2) {									// One pair, two pairs
 		return hand2[HighestCard(hand2)] < hand1[HighestCard(hand1)];
 	}
-	else if (points == 3 || points == 6 || points == 7) {                // 3 of kind, full house, 4 of kind
-		return hand2[2] < hand1[2];					                     // middle card has to be part of the triple or quadruple
+	else if (points == 3 || points == 6 || points == 7) {                // 3 of a kind, full house, 4 of a kind
+		return hand2[2] < hand1[2];					                   
 	}	
-	else {                                                               // straight flush, straight, flush, high card, royal
+	else {                                                               // Straight flush, straight, flush, high card, royal
 		return (hand2[HAND_SIZE-1] < hand1[HAND_SIZE-1]);
 	}
 }
 
 
-// sort players
-void SortPlayers(Player player[PLAYERS])  // insertion sort
+// Sort players' rankings from lowest to highest using insertion sort
+void SortPlayers(Player player[PLAYERS])  
 {
 	int i, j, points;
 	Player temp;
-	for (i = 1; i < PLAYERS; i++)		// insertion sort
+	for (i = 1; i < PLAYERS; i++)		
 	{
 		points = player[i].GetPoints();
 		temp = player[i];
@@ -122,24 +122,23 @@ bool Repeats(struct card hand[HAND_SIZE])
 // Returns true if hand holds 3 cards of a rank
 bool Triple(struct card hand[HAND_SIZE]) 
 {
-	char* middle_rank = hand[2].rank; // middle card
-	// left
-	if (middle_rank == hand[1].rank) {
+	char* middle_rank = hand[2].rank;			// Middle card
+
+	// Check left side
+	if (middle_rank == hand[1].rank) {          
 		if (middle_rank == hand[3].rank && (middle_rank != hand[4].rank && middle_rank != hand[0].rank)) { 
 			return true;
 		}
 		else if (middle_rank == hand[0].rank && middle_rank != hand[3].rank) { return true; }
 		else { return false; }
 	}
-	// right
+
+	// Check right side 
 	else if (middle_rank == hand[3].rank) {
-		if (middle_rank == hand[1].rank && (middle_rank != hand[4].rank && middle_rank != hand[0].rank)) { 
-			return true;
-		}
-		else if (middle_rank == hand[4].rank && middle_rank != hand[1].rank) { return true; }
+		if (middle_rank == hand[4].rank && middle_rank != hand[1].rank) { return true; }
 		else { return false; }
 	}
-	// neither
+
 	else { return false; }
 }
 
@@ -204,6 +203,7 @@ bool IsRoyal(struct card &first_card)
 
 
 // Returns the index in the hand of the highest card ranking for pairs.
+// Assumes hand contains a pair or two.
 int HighestCard(struct card hand[HAND_SIZE]) 
 {
 	InsertionSort(hand);
@@ -211,7 +211,7 @@ int HighestCard(struct card hand[HAND_SIZE])
 	for (i = HAND_SIZE-1; i > 0; i--) {
 		if (hand[i].rank == hand[i-1].rank) { return i; }
 	}
-	return 0; // should not reach this
+	return 0;			// should not have to reach this
 }
 
 

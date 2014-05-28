@@ -11,7 +11,7 @@ private:
 	struct card hand[HAND_SIZE];
 	int points;
 
-	void SortHand();		
+	void SortHand();		// Sort player's hand in order from lowest rank to highest rank	
 	
 
 public:
@@ -19,11 +19,11 @@ public:
 	Player() {}
 	Player(int p_id) : id(p_id), hand(), points(0) {}
 	~Player() {}
-	void SetHand(struct card new_hand[HAND_SIZE]);
 	struct card* GetHand() { return hand; }  
-	int GetPoints() { return points; }
-	int GetID() { return id; }		
+	void SetHand(struct card new_hand[HAND_SIZE]);
+	int GetPoints() { return points; }	
 	void SetPoints(int i) { points = i; }
+	int GetID() { return id; }	
 };
 
 
