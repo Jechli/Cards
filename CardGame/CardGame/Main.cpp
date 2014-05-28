@@ -38,6 +38,30 @@ int main (void)
 
 	char* a = "2";
 	cout << (int) a << endl;
+		// Create cards to use
+	struct card ONE;
+	struct card TWO;
+	struct card THREE;
+	struct card FOUR;
+	struct card FIVE;
+	struct card hand[HAND_SIZE];
+
+				 ONE.rank = "J"; ONE.suit = "S";
+			 TWO.rank = "10"; TWO.suit = "S";
+			 THREE.rank = "9"; THREE.suit = "S";
+			 FOUR.rank = "8"; FOUR.suit = "S";
+			 FIVE.rank = "7"; FIVE.suit = "S";
+			 hand[0] = ONE; hand[1] = TWO; hand[2] = THREE; hand[3] = FOUR; hand[4] = FIVE;
+			 cout << "SF: " << CalculatePoints(hand) << endl;
+
+			 			 ONE.rank = "8"; ONE.suit = "S";
+			 TWO.rank = "6"; TWO.suit = "H";
+			 THREE.rank = "7"; THREE.suit = "C";
+			 FOUR.rank = "5"; FOUR.suit = "D";
+			 FIVE.rank = "9"; FIVE.suit = "C";
+			 hand[0] = ONE; hand[1] = TWO; hand[2] = THREE; hand[3] = FOUR; hand[4] = FIVE;
+			 cout << "S: " << CalculatePoints(hand) << endl;
+
 
 	system( "pause" );
 	return 0;
