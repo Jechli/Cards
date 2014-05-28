@@ -8,7 +8,7 @@ void Player::SortHand()
 	int i, j;
 	struct card temp;
 	
-	for (i = 1; i < HAND_SIZE; i++)		// insertion sort
+	for (i = 1; i < HAND_SIZE; i++)		
 	{
 		temp = hand[i];
 		for (j = i - 1; j >=0 && temp < hand[j]; j--)

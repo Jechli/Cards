@@ -54,13 +54,6 @@ int main (void)
 			 hand[0] = ONE; hand[1] = TWO; hand[2] = THREE; hand[3] = FOUR; hand[4] = FIVE;
 			 cout << "SF: " << CalculatePoints(hand) << endl;
 
-			 			 ONE.rank = "8"; ONE.suit = "S";
-			 TWO.rank = "6"; TWO.suit = "H";
-			 THREE.rank = "7"; THREE.suit = "C";
-			 FOUR.rank = "5"; FOUR.suit = "D";
-			 FIVE.rank = "9"; FIVE.suit = "C";
-			 hand[0] = ONE; hand[1] = TWO; hand[2] = THREE; hand[3] = FOUR; hand[4] = FIVE;
-			 cout << "S: " << CalculatePoints(hand) << endl;
 
 
 	system( "pause" );
