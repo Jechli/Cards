@@ -1,6 +1,6 @@
 Jennifer Ling
 
-ONE: Skills and expertise 
+ONE: Areas of expertise 
 
 C++ is my main language, I was fond of it while taking my data structures course, and it is the 
 language I am currently using for my robotics team, SnowBots.
