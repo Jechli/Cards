@@ -173,6 +173,8 @@ int Pairs(struct card hand[HAND_SIZE])
 	}
 	if (values < 1) { values = 1; }
 	if (count == 2) { return 1; }
+	else if (count == 3) { return 0; }
+	else if (count == 5 && values == 2) { return 1; }
 	else { return (count / values); }
 
 }
