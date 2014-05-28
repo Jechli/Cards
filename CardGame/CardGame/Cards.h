@@ -13,6 +13,7 @@ struct card
 	char* suit;
 };
 
+
 // Overloading '<' and '-'
 bool operator <(const struct card &left, const struct card &right);	// Returns true if left rank < right rank
 int operator -(const struct card &card1, const struct card &card2);	// Returns the difference between ranks in terms of cards

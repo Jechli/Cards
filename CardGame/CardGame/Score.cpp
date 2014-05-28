@@ -19,11 +19,6 @@ void InsertionSort(struct card hand[HAND_SIZE]);
 int CalculatePoints(struct card hand[HAND_SIZE]) {
 
 	InsertionSort(hand);
-	struct card first = hand[0];
-	struct card second = hand[1];
-	struct card third = hand[2];
-	struct card fourth = hand[3];
-	struct card fifth = hand[4];
 	
 	if (Repeats(hand))									// Check hand for cards with repeated ranks
 	{
@@ -70,6 +65,7 @@ bool CompareHands(struct card hand1[HAND_SIZE], struct card hand2[HAND_SIZE], in
 {
 	InsertionSort(hand1);
 	InsertionSort(hand2);
+
 	if (points == 1 || points == 2) {									// One pair, two pairs
 		return hand2[HighestCard(hand2)] < hand1[HighestCard(hand1)];
 	}
